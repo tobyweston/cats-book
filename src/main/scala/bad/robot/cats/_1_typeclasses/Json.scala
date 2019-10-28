@@ -23,7 +23,14 @@ object JsonWriterInstances {
         "name"  -> JsString(value.name),
         "email" -> JsString(value.email)
       )
-  )
+    )
+
+  implicit def optionWriter[A](implicit writer: JsonWriter[A]): JsonWriter[Option[A]] =
+    (option: Option[A]) =>
+      option match {
+        case Some(value) => writer.write(value)
+        case None        => JsNull
+      }
 }
 
 // (type class) interface object
@@ -43,7 +50,10 @@ object JsonExample extends App {
   val person = Person("Dave", "dave@google.com")
 
   println(Json.toJson(person))
-  
+
   import JsonSyntax._
   println(person.toJson)
+
+  // needs implicit JsonWriter[Option[String]]
+  Option("a string").toJson
 }
