@@ -6,7 +6,7 @@ trait Printable[A] {
 }
 
 // type class "interfaces" (as in contracts)
-// two typical ways to do this. 1) interface object (as in this one) 
+// two typical ways to do this. 1) interface object (as in this one)
 object Printable {
   def format[A](a: A)(implicit printable: Printable[A]): String = printable.format(a)
   def print[A](a: A)(implicit evidence: Printable[A]): Unit = println(format(a))
