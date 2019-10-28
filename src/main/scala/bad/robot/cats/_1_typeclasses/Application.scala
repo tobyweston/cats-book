@@ -13,5 +13,9 @@ object Application extends App {
   val cat = Cat("Garfield", 5, "Orange and black")
 
   Printable.print(cat)
+  
+  import PrintableSyntax._
+  
+  cat.print
 }
 
