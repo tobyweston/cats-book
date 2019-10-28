@@ -8,6 +8,5 @@ libraryDependencies +=
   "org.typelevel" %% "cats-core" % "2.0.0"
 
 scalacOptions ++= Seq(
-  "-Xfatal-warnings",
-  "-Ypartial-unification"
+  "-Xfatal-warnings"
 )
